@@ -12,15 +12,19 @@ class App extends Component {
     // クッキー確認
     const { cookies } = props;
     console.log(props);
+    console.log(cookies);
+
 
     // クッキーでユーザーID、トークンが残っていればログイン、そうでなければ何もしない
     // ログインに成功した場合は、stateのユーザーを変更する
     this.state = {
-      token: token
+      token: token,
+//      name: cookies.get("name") || "unknown"
     };
   }
 
   render() {
+
     return (
       <div className="App">
         <div className="App-header">
