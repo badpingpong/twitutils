@@ -11,7 +11,6 @@ class App extends Component {
     super(props);
     dotenv.config();
     const env = process.env
-    console.log(env);
 
     // クッキー確認
     const { cookies } = props;
