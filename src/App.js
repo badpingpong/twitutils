@@ -12,12 +12,11 @@ class App extends Component {
     dotenv.config();
     const env = process.env
     console.log(env);
-    
+
     // クッキー確認
     const { cookies } = props;
     console.log(props);
     console.log(cookies);
-    console.log(process.env);
 
     // クッキーでユーザーID、トークンが残っていればログイン、そうでなければ何もしない
     // ログインに成功した場合は、stateのユーザーを変更する
