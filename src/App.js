@@ -5,7 +5,6 @@ import LoginButton from "./LoginButton.js";
 //import token from "../token.json";
 //import { withCookies, Cookies } from "react-cookie";
 import dotenv from "dotenv";
-import { createImportSpecifier } from 'typescript';
 
 class App extends Component {
   constructor(props) {
@@ -13,13 +12,7 @@ class App extends Component {
     dotenv.config();
     const env = process.env
     console.log(env);
-    if(env.NODE_ENV === "production"){
-      console.log(env.secret_key);
-    } else{
-      import("./token.json").then((token) => {
-        console.log(token);
-      });
-    }
+    
     // クッキー確認
     const { cookies } = props;
     console.log(props);
