@@ -2,23 +2,26 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginButton from "./LoginButton.js";
-import token from "../token.json";
-import { withCookies, Cookies } from "react-cookie";
-
+//import token from "../token.json";
+//import { withCookies, Cookies } from "react-cookie";
+import dotenv from "dotenv";
+require("dotenv").config();
 class App extends Component {
   constructor(props) {
     super(props);
-
+    dotenv.config();
+    const env = process.env
+    console.log(env);
     // クッキー確認
     const { cookies } = props;
     console.log(props);
     console.log(cookies);
-
+    console.log(process.env);
 
     // クッキーでユーザーID、トークンが残っていればログイン、そうでなければ何もしない
     // ログインに成功した場合は、stateのユーザーを変更する
     this.state = {
-      token: token,
+      token: "token",
 //      name: cookies.get("name") || "unknown"
     };
   }
