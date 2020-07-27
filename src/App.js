@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginButton from "./LoginButton.js";
-//import token from "../token.json";
-//import { withCookies, Cookies } from "react-cookie";
+import { instanceOf } from 'prop-types';
 import dotenv from "dotenv";
 
 class App extends Component {
@@ -11,17 +10,14 @@ class App extends Component {
     super(props);
     dotenv.config();
     const env = process.env
-
+    console.log("env=", env);
     // クッキー確認
-    const { cookies } = props;
     console.log(props);
-    console.log(cookies);
 
     // クッキーでユーザーID、トークンが残っていればログイン、そうでなければ何もしない
     // ログインに成功した場合は、stateのユーザーを変更する
     this.state = {
       token: "token",
-//      name: cookies.get("name") || "unknown"
     };
   }
 
