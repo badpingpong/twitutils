@@ -15,7 +15,7 @@ class LoginButton extends React.Component {
             consumer_secret: this.props.consumer_secret
         })
 
-        client.getRequestToken("http://192.168.150.37:3000/").then(res =>{
+        client.getRequestToken("https://twitutils.herokuapp.com/").then(res =>{
             console.log({
                 reqTkn: res.oauth_token,
                 reqTknSecret: res.oauth_token_secret
