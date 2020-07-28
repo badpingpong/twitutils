@@ -17,7 +17,8 @@ class App extends Component {
     // クッキーでユーザーID、トークンが残っていればログイン、そうでなければ何もしない
     // ログインに成功した場合は、stateのユーザーを変更する
     this.state = {
-      token: "token",
+      consumer_key: env.REACT_APP_CONSUMER_KEY,
+      consumer_secret: env.REACT_APP_CONSUMER_SECRET
     };
   }
 
