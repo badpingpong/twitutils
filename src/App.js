@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginButton from "./LoginButton.js";
-import { instanceOf } from 'prop-types';
 import dotenv from "dotenv";
+import Twitter from "twitter-lite"
 
 class App extends Component {
   constructor(props) {
     super(props);
     dotenv.config();
     const env = process.env
-    console.log("env=", env);
-    // クッキー確認
-    console.log(props);
-
+    const client = new Twitter({
+      consumer_key: env.REACT_APP_CONSUMER_KEY,
+      consumer_secret: env.REACT_APP_CONSUMER_SECRET,
+      access_token_key: env.REACT_APP_ACCESS_TOKEN_KEY,
+      access_token_secret: env.REACT_APP_ACCESS_TOKEN_SECRET,
+    });
     // クッキーでユーザーID、トークンが残っていればログイン、そうでなければ何もしない
     // ログインに成功した場合は、stateのユーザーを変更する
     this.state = {
-      consumer_key: env.REACT_APP_CONSUMER_KEY,
-      consumer_secret: env.REACT_APP_CONSUMER_SECRET
+      client: client
     };
   }
 
@@ -33,7 +34,7 @@ class App extends Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-          <LoginButton data={this.state} a={"data dayo"} b={this.props}/>
+          <LoginButton client={this.state.client}/>
         </p>
       </div>
     );

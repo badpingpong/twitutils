@@ -1,26 +1,48 @@
 import React from "react";
-import Twitter from "twitter-lite";
 
 class LoginButton extends React.Component {
     constructor(props){
         super(props);
         this.onButtonClick = this.onButtonClick.bind(this);
+        this.tweetThread = this.tweetThread.bind(this)
     }
 
+    async tweetThread(thread) {
+        let lastTweetID = "";
+        for(const status of thread) {
+            const tweet = await this.props.client.post("statuses/update", {
+                status:status,
+                in_reply_to_status_id: lastTweetID,
+                auto_populate_reply_metadata: true
+            });
+            lastTweetID = tweet.id_str;
+        }
+    }
 
     onButtonClick() {
-        console.log(this.props);
-        const client = new Twitter({
-            consumer_key: this.props.consumer_key,
-            consumer_secret: this.props.consumer_secret
-        })
 
-        client.getRequestToken("https://twitutils.herokuapp.com/").then(res =>{
-            console.log({
-                reqTkn: res.oauth_token,
-                reqTknSecret: res.oauth_token_secret
-            })
-        }).catch(console.error);
+        this.tweetThread = this.tweetThread.bind(this)
+
+        const thread = ["First tweet", "Second tweet", "Third tweet"];
+        this.tweetThread(thread).catch(console.error);
+        
+        function fetchZip(number){
+            const url = "https://zipcloud.ibsnet.co.jp/api/search";
+            fetch(url + "?zipcode="+ number, {
+                method: "GET",
+                mode:"cors",
+                credentials: "same-origin"
+            }).then(console.log)
+        }
+        fetchZip(3050006)
+
+       fetch('https://holidays-jp.github.io/api/v1/date.json',{
+           mode: "cors"
+       })
+       .then(response => response.text())
+       .then(text => {
+         console.log(text);
+       });
     }
 
     render(){
