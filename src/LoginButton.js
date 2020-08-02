@@ -5,6 +5,7 @@ class LoginButton extends React.Component {
     super(props);
     this.onButtonClick = this.onButtonClick.bind(this);
     this.tweetThread = this.tweetThread.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
   async tweetThread(thread) {
@@ -19,9 +20,16 @@ class LoginButton extends React.Component {
     }
   }
 
+  async getUser(screen_name){
+    const rateLimits = await this.props.client.get("statuses/show", {
+      screen_name: screen_name,
+    })
+    return rateLimits;
+  }
+
   onButtonClick() {
     this.tweetThread = this.tweetThread.bind(this);
-
+    this.getUser = this.getUser.bind(this);
     //const thread = ["First tweet", "Second tweet", "Third tweet"];
     //this.tweetThread(thread).catch(console.error);
     const a = require("./tweettest.js");
@@ -44,6 +52,8 @@ class LoginButton extends React.Component {
       .then((text) => {
         console.log(text);
       });
+    
+    this.getUser("retchoon");
   }
 
   render() {
