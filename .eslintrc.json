@@ -1,0 +1,16 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "prettier/react"
+    ],
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "env": { "browser": true, "node": true, "es6": true },
+    "rules": {
+      // 適当なルール
+    }
+  }
